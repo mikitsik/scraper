@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'extractor'
 require_relative 'paginator'
 
+# This class parsing the site
 class Parser
   include Extractor
   include Paginator
@@ -25,7 +28,7 @@ class Parser
     #   puts page
     # end
 
-    link = Curl.get(@link)
-    extract(Nokogiri::HTML(link.body_str))
+    pages = paginate(Nokogiri::HTML(Curl.get(@link).body_str))
+    extract(pages, @link)
   end
 end
