@@ -1,13 +1,19 @@
 require 'nokogiri'
 require 'csv'
 require 'curb'
+require_relative 'parser'
 
-puts ARGV[0]
+parser = Parser.new(ARGV)
 
-http = Curl.get('https://www.petsonic.com/snacks-huesos-para-perros/')
+parser.run
 
-document = Nokogiri::HTML(http.body_str)
 
-document.xpath('.//a[@class="product-name"]/@href').each do |url|
-  puts url
-end
+
+# document = Nokogiri::HTML(http.body_str)
+
+# while (c = Curl::Easy.perform(pagination == 1 ? options.link : "#{options.link}?p=#{pagination}")).response_code == 200
+
+# document.xpath('.//a[@class="product-name"]/@href').each do |url|
+#   puts url
+# end
+
