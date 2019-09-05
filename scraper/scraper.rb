@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 require 'csv'
 require 'curb'
+require_relative 'parser'
+require_relative 'recorder'
 
-puts ARGV[0]
+parser = Parser.new(ARGV[0])
 
-http = Curl.get('https://www.petsonic.com/snacks-huesos-para-perros/')
+record = Recorder.new(parser.run, ARGV[1])
 
-document = Nokogiri::HTML(http.body_str)
-
-document.xpath('.//a[@class="product-name"]/@href').each do |url|
-  puts url
-end
+record.printing
