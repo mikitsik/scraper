@@ -8,7 +8,7 @@ module Paginator
 
   private
 
-  PATH = './/div[@class="product-count hidden-xs"]'
+  PATH = './/div[contains(@class, "product-count")]'
   REGEX = /\d+\s*de\s*\d+/.freeze
 
   #:reek:UtilityFunction

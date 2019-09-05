@@ -4,15 +4,10 @@ require 'nokogiri'
 require 'csv'
 require 'curb'
 require_relative 'parser'
+require_relative 'recorder'
 
-parser = Parser.new(ARGV)
+parser = Parser.new(ARGV[0])
 
-parser.run
+record = Recorder.new(parser.run, ARGV[1])
 
-# document = Nokogiri::HTML(http.body_str)
-
-# while (c = Curl::Easy.perform(pagination == 1 ? options.link : "#{options.link}?p=#{pagination}")).response_code == 200
-
-# document.xpath('.//a[@class="product-name"]/@href').each do |url|
-#   puts url
-# end
+record.printing
